@@ -1,19 +1,14 @@
 'use strict';
 // Compare two dictionaries
 
-const compare = (first_values,...parameters_LIST) => {
-  const second_values = parameters_LIST[0];
-  const a = Object.keys(first_values);
-  const b = Object.keys(second_values);
-  if (a.join('-') !== b.join('-')) return false;
-  let e = true;
-  for (const c of a) {
-    if (first_values[c] === second_values[c]) e = e && true;
-    else { 
-      e = e && false;
-    }
+const compare = (obj1, obj2) => {
+  const keys1 = Object.keys(obj1).sort();
+  const keys2 = Object.keys(obj2).sort();
+  if (keys1.join('-') !== keys2.join('-')) return false;
+  for (const key of keys1) {
+    if (keys1[key] !== keys2[key]) return false;
   }
-  return e;
+  return true;
 };
 
 const result = compare(
